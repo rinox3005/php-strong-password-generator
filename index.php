@@ -10,9 +10,10 @@ $passwordLength = $_GET['length'] ?? 0;
 $includeLett = $_GET['includeLett'] ?? 'off';
 $includeNum = $_GET['includeNum'] ?? 'off';
 $includeSym = $_GET['includeSym'] ?? 'off';
+$includeRepeat = $_GET['includeRepeat'] ?? 'off';
 
 // Assegno alla variabile password il risultato della funzione
-$password = passwordRandomizer($passwordLength, $includeLett, $includeNum, $includeSym);
+$password = passwordRandomizer($passwordLength, $includeLett, $includeNum, $includeSym, $includeRepeat);
 
 // Aggiungo il valore di password alla chiave genPassword all'interno di SESSION
 $_SESSION['password'] = $password;
@@ -50,6 +51,11 @@ if (!empty($_SESSION['password'])) {
                     <input type="checkbox" class="btn-check" id="symbols" autocomplete="off" name="includeSym">
                     <label class="btn btn-outline-primary" for="symbols">Symbols</label>
                 </div>
+            </div>
+            <div class="mb-5">
+                <h5>Repeat same characters?</h5>
+                <input type="checkbox" class="btn-check" id="repeat" autocomplete="off" name="includeRepeat">
+                <label class="btn btn-outline-primary" for="repeat">Repeat</label>
             </div>
             <button class="btn btn-primary">Generate</button>
         </form>
