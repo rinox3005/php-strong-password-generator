@@ -1,4 +1,6 @@
 <?php
+// Inizializzo la sessione
+session_start();
 
 // Includo il file .php che contiene le funzioni
 include __DIR__ . '/functions.php';
@@ -9,6 +11,14 @@ $passwordLength = $_GET['length'] ?? 0;
 // Assegno alla variabile password il risultato della funzione
 $password = passwordRandomizer($passwordLength);
 
+// Aggiungo il valore di password alla chiave genPassword all'interno di SESSION
+$_SESSION['password'] = $password;
+
+if (!empty($_SESSION['password'])) {
+    header('Location: ./genPassword.php');
+}
+
+var_dump($_SESSION);
 ?>
 
 <!-- Includo la parte iniziale dell'html -->
@@ -28,12 +38,6 @@ $password = passwordRandomizer($passwordLength);
             </div>
             <button class="btn btn-primary">Generate</button>
         </form>
-        <!-- Controllo se la password é stata generata e la mostro in pagina -->
-        <?php if (!empty($password)) : ?>
-            <div class="alert alert-success mt-5">
-                Your generated password is: <strong><?php echo $password; ?></strong>
-            </div>
-        <?php endif; ?>
     </section>
 </main>
 
@@ -43,6 +47,3 @@ $password = passwordRandomizer($passwordLength);
         document.getElementById('passLengthValue').textContent = this.value;
     });
 </script>
-
-<!-- Includo la parte finale dell'html -->
-<?php include __DIR__ . '/includes/htmlClose.php'; ?>
