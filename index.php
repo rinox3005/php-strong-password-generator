@@ -30,7 +30,7 @@ if (!empty($_SESSION['password'])) {
 
 <main>
     <section class="container text-center card mt-5 m-auto p-5">
-        <form action="index.php" method="GET">
+        <form action="index.php" method="GET" autocomplete="off">
             <h1 class="pb-4">Strong Password Generator</h1>
             <div class="row justify-content-center align-items-center">
                 <!-- Input range per selezionare la lunghezza della password desiderata -->
