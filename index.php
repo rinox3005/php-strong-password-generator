@@ -14,11 +14,11 @@ $password = passwordRandomizer($passwordLength);
 // Aggiungo il valore di password alla chiave genPassword all'interno di SESSION
 $_SESSION['password'] = $password;
 
+// Se la password é stata generata reindirizza sulla pagina della password e termina i processi della pagina attuale
 if (!empty($_SESSION['password'])) {
     header('Location: ./genPassword.php');
+    die();
 }
-
-var_dump($_SESSION);
 ?>
 
 <!-- Includo la parte iniziale dell'html -->
@@ -33,7 +33,6 @@ var_dump($_SESSION);
                 <div class="col-3 mb-4">
                     <label for="passLength" class="form-label">Password length (min: 6) : <span id="passLengthValue" class="fw-bold">6</span></label>
                     <input type="range" class="form-range" min="6" max="18" value="6" id="passLength" name="length" />
-
                 </div>
             </div>
             <button class="btn btn-primary">Generate</button>
