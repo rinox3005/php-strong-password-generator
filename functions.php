@@ -1,6 +1,6 @@
 <?php
 
-function passwordRandomizer($length)
+function passwordRandomizer($length, $let, $num, $sym)
 {
     // Utilizzo 4 stringhe di caratteri e uso str_split per traformarli in array
     $lowLetters = str_split('abcdefghijklmnopqrstuvwxyz');
@@ -9,7 +9,21 @@ function passwordRandomizer($length)
     $symbols = str_split('!@#$%^&*()-_=+[]{}|;:,.<>?/');
 
     // Creo un nuovo array unendo i 4 array generati precedentemente
-    $arrayOfChar = array_merge($lowLetters, $uppLetters, $numbers, $symbols);
+    $arrayOfChar = [];
+
+    if ($let == 'on' || $num == 'on' || $sym == 'on') {
+        if ($let == 'on') {
+            $arrayOfChar = array_merge($lowLetters, $uppLetters);
+        }
+        if ($num == 'on') {
+            $arrayOfChar = array_merge($arrayOfChar, $numbers);
+        }
+        if ($sym == 'on') {
+            $arrayOfChar = array_merge($arrayOfChar, $symbols);
+        }
+    } else {
+        $arrayOfChar = array_merge($lowLetters, $uppLetters, $numbers, $symbols);
+    }
 
     // Mescolo i caratteri del nuovo array
     shuffle($arrayOfChar);
