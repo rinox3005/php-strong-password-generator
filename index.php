@@ -46,8 +46,8 @@ $password = passwordRandomizer($passwordLength);
             <div class="row justify-content-center">
                 <!-- Input range per selezionare la lunghezza della password desiderata -->
                 <div class="col-3 mb-4">
-                    <label for="passLength" class="form-label">Select password length: <span id="passLengthValue">0</span></label>
-                    <input type="range" class="form-range" min="0" max="18" value="0" id="passLength" name="length" />
+                    <label for="passLength" class="form-label">Password length (min: 6) : <span id="passLengthValue" class="fw-bold">6</span></label>
+                    <input type="range" class="form-range" min="6" max="18" value="6" id="passLength" name="length" />
 
                 </div>
             </div>
