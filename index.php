@@ -29,7 +29,7 @@ $password = passwordRandomizer($passwordLength);
             <button class="btn btn-primary">Generate</button>
         </form>
         <!-- Controllo se la password é stata generata e la mostro in pagina -->
-        <?php if ($password) : ?>
+        <?php if (!empty($password)) : ?>
             <div class="alert alert-success mt-5">
                 Your generated password is: <strong><?php echo $password; ?></strong>
             </div>
