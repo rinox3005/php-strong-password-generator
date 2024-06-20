@@ -2,6 +2,12 @@
 // Inizializzo la sessione
 session_start();
 
+// Se venissero cancellati i cookies e non ci fosse la password presente in SESSION ritorna all'index
+if (empty($_SESSION['password'])) {
+    header('Location: ./index.php');
+    die();
+}
+
 ?>
 
 <!-- Includo la parte iniziale dell'html -->

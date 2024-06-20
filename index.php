@@ -3,25 +3,29 @@
 session_start();
 
 // Includo il file .php che contiene le funzioni
-include __DIR__ . '/functions.php';
+require_once __DIR__ . '/functions.php';
 
-// Prendo il valore passato in GET dall'input range
-$passwordLength = $_GET['length'] ?? 0;
-$includeLett = $_GET['includeLett'] ?? 'off';
-$includeNum = $_GET['includeNum'] ?? 'off';
-$includeSym = $_GET['includeSym'] ?? 'off';
-$includeRepeat = $_GET['includeRepeat'] ?? 'off';
+// Controllo se il parametro length non é vuoto prima di procedere
+if (!empty($_GET['length'])) {
+    // Prendo i valori passati in GET dal form
+    $passwordLength = intval($_GET['length']) ? intval($_GET['length']) : 6;
+    $includeLett = $_GET['includeLett'] ?? 'off';
+    $includeNum = $_GET['includeNum'] ?? 'off';
+    $includeSym = $_GET['includeSym'] ?? 'off';
+    $includeRepeat = $_GET['includeRepeat'] ?? 'off';
 
-// Assegno alla variabile password il risultato della funzione
-$password = passwordRandomizer($passwordLength, $includeLett, $includeNum, $includeSym, $includeRepeat);
+    // Assegno alla variabile password il risultato della funzione
+    $password = passwordRandomizer($passwordLength, $includeLett, $includeNum, $includeSym, $includeRepeat);
 
-// Aggiungo il valore di password alla chiave genPassword all'interno di SESSION
-$_SESSION['password'] = $password;
 
-// Se la password é stata generata reindirizza sulla pagina della password e termina i processi della pagina attuale
-if (!empty($_SESSION['password'])) {
-    header('Location: ./genPassword.php');
-    die();
+    // Aggiungo il valore di password alla chiave genPassword all'interno di SESSION
+    $_SESSION['password'] = $password;
+
+    // Se la password é stata generata reindirizza sulla pagina della password e termina i processi della pagina attuale
+    if (!empty($_SESSION['password'])) {
+        header('Location: ./genPassword.php');
+        die();
+    }
 }
 ?>
 
